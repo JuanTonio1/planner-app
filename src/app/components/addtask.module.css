@@ -1,0 +1,32 @@
+.add {
+    position: relative;
+    background-color: green;
+    width: 10%;
+    height: 10vw;
+    left: 24.8%;
+    z-index: 3;
+    border-style: solid;
+    border-color: black;
+}
+
+.popup {
+    /* inset: 0px; */
+    width: 19.8%;
+    height: 20vw;
+    position: relative;
+    left: 14.8%;
+    /* margin: auto; */
+    background-color: wheat;
+    z-index: 3;
+    border-style: solid;
+    border-color: black;
+}
+
+.background {
+    /* min-width: 100%;
+    min-height: 100%; */
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+    background-color: black;
+}
