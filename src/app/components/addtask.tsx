@@ -1,7 +1,7 @@
 'use client'
 
 import styles from './addtask.module.css'
-import { createContext, JSX, ReactNode, useContext } from 'react';
+import { createContext, Dispatch, JSX, ReactNode, SetStateAction, useContext } from 'react';
 import { useState } from 'react';
 
 export type rowData = {
@@ -30,39 +30,81 @@ const AddTask = () => {
     const { tasks, setTasks } = useContext(TaskContext) as TaskContextType;
     const [showPopup, setShowPopup] = useState(false);
 
-    const clickHandle = (name?: string, description?: string) => {
-        if (!name) {
-            name = '';
+    const clickHandle = () => { 
+        if (showPopup) {
+
+            let name_input: HTMLTextAreaElement | null = document.querySelector(`.${styles.name_input}`);
+            let description_input: HTMLTextAreaElement | null = document.querySelector(`.${styles.description_input}`);
+            let date_input: HTMLInputElement | null = document.querySelector(`.${styles.date_input}`);
+
+            let name: string = name_input !== null && name_input.value || '';
+            let description: string = description_input !== null && description_input.value || '';
+            let date: string = date_input !== null && date_input.value || '';
+
+            console.log('name is:', name);
+            console.log('description is:', description);
+
+            if (!name) {
+                name = '';
+            }
+            if (!description) {
+                description = '';
+            }
+            var newTasks = [...tasks, { name, description }];
+            setTasks(newTasks);
+            setShowPopup(false);
+            return;
         }
-        if (!description) {
-            description = '';
-        }
-        var newTasks = [...tasks, { name, description}];
-        setTasks(newTasks);
         setShowPopup(true);
-        console.log(newTasks);
     }
     console.log(tasks.length)
 
+
     return (
         <>
-            <button className={styles.add} onClick={() => clickHandle()}></button>
+            <button className={`${!showPopup && styles.add || styles.confirm}`} onClick={() => clickHandle()}>
+                {showPopup && (
+                    <p>Confirm?</p>
+                )}
+            </button>
             {showPopup && (
                 <>
-                    {/* <div className={styles.background}>
-
-                    </div> */}
-                <Popup></Popup>
+                    <Cancel showPopup={showPopup} setShowPopup={setShowPopup}></Cancel>
+                    <Popup></Popup>
                 </>
             )}
         </>
     )
 }
 
+const Cancel = ({ showPopup, setShowPopup }: { showPopup: boolean, setShowPopup: Dispatch<SetStateAction<boolean>> }) => {
+    return (
+        <button className={styles.cancel} onClick={() => {
+            setShowPopup(false);
+        }}>
+            Cancel
+        </button>
+    )
+}
+
 const Popup = () => {
     return (
         <div className={styles.popup}>
-            hey
+                <textarea className={styles.name_input} name='name'></textarea>
+                <textarea className={styles.description_input} name='description'></textarea>
+                <input type='date' className={styles.date_input}></input>
+                <div className={styles.side_description} id={styles.side1}>
+                    Name
+                </div>
+                <div className={styles.side_description} id={styles.side2}>
+                    Description
+                </div>
+                <div className={styles.side_description} id={styles.side3}>
+                    Date
+                </div>
+            <div className={styles.name_display}>
+
+            </div>
         </div>
     )
 }

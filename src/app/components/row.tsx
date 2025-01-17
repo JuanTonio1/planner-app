@@ -9,8 +9,10 @@ const Row = ({ name, description, keyProp }: { name: string, description: string
 
     return (
         <div className={styles.row} id='load'>
-            {/* <RowFeatures name={name} description={description}></RowFeatures> */}
             <Checkmark keyProp={keyProp} />
+            <div className={styles.inner_container}>
+                <MainRowFeatures name={name} description={description}></MainRowFeatures>
+            </div>
         </div>
     )
 }
@@ -41,57 +43,7 @@ const Checkmark = ({ keyProp }: { keyProp: string }) => {
     )
 }
 
-// class Checkmark extends Component<{ keyProp: string }> {
-//     constructor(keyProp: { keyProp: string }) {
-//         super(keyProp)
-//         this.state = {
-//             isCompleted: false
-//         }
-//     }
-
-//     render(): ReactNode {
-
-//         console.log(this.props.keyProp);
-
-//         const complete = () => {
-//             // if (this.props.keyProp)
-//             // console.log('pressing: ', this.)
-//             const { tasks} = useContext(TaskContext) as TaskContextType;
-
-//             const rowList = tasks.map((task, i) => {
-//                 if (('task' + String(i)) == this.props.keyProp) {
-//                     console.log('length is:', tasks.length);
-//                     // var newTasks = tasks;
-//                     // newTasks.splice(i, 1);
-//                     console.log('length is now:', tasks.length)
-//                     return (
-//                         <></>
-//                     )
-//                 }
-//             }
-//             );
-//         }
-
-//         return (
-//             <button className={styles.checkmark} onClick={complete}>
-//                 <Image src={globe} alt=''></Image>
-//             </button>
-//         )
-//     }
-// }
-// const [isCompleted, setCompletion] = useState(false);
-
-// const complete = () => {
-
-// }
-
-// return (
-//     <button className={styles.checkmark}  onClick={complete}>
-//         <Image src={globe} alt=''></Image>
-//     </button>
-// )
-
-const RowFeatures = ({ name, description }: { name: string, description: string }) => {
+const MainRowFeatures = ({ name, description }: { name: string, description: string }) => {
     return (
         <>
             <div className={styles.inner}>
