@@ -15,10 +15,19 @@ const Home = () => {
       <TaskProvider>
         <AddTask></AddTask>
         <div className={styles.page}>
+          <Header></Header>
           <Rows></Rows>
         </div>
       </TaskProvider>
     </>
+  )
+}
+
+const Header = () => {
+  return (
+    <div className={styles.header}>
+        <input type="text" placeholder="Enter Title"></input>
+    </div>
   )
 }
 
@@ -34,7 +43,7 @@ const Rows = () => {
   const { tasks } = useContext(TaskContext) as TaskContextType;
 
   const rowList = tasks.map((task, i) => {
-      return <Row name={task.name} description={task.description} key={'task' + String(i)} keyProp={'task' + String(i)}></Row>
+      return <Row name={task.name} description={task.description} date={task.date} key={'task' + String(i)} keyProp={'task' + String(i)}></Row>
     }
   );
 

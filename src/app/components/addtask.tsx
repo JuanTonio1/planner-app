@@ -7,6 +7,7 @@ import { useState } from 'react';
 export type rowData = {
     name: string,
     description: string,
+    date: string,
 }
 
 export type TaskContextType = {
@@ -43,14 +44,8 @@ const AddTask = () => {
 
             console.log('name is:', name);
             console.log('description is:', description);
-
-            if (!name) {
-                name = '';
-            }
-            if (!description) {
-                description = '';
-            }
-            var newTasks = [...tasks, { name, description }];
+            console.log('date is:', date)
+            var newTasks = [...tasks, { name, description, date }];
             setTasks(newTasks);
             setShowPopup(false);
             return;
@@ -65,6 +60,8 @@ const AddTask = () => {
             <button className={`${!showPopup && styles.add || styles.confirm}`} onClick={() => clickHandle()}>
                 {showPopup && (
                     <p>Confirm?</p>
+                ) || (
+                    <p>Add Task</p>
                 )}
             </button>
             {showPopup && (

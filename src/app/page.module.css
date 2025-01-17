@@ -20,6 +20,29 @@ html body {
   min-height: 0px;
 }
 
+.header {
+  position: sticky;
+  width: 100%;
+  height: 10%;
+  background-color: #353535;
+  display: flex;
+  flex-direction: row;
+}
+
+.header input {
+  width: 101%;
+  font-size: 200%;
+  text-align: center;
+  outline: none;
+  color: white;
+  background-color: transparent;
+  /* height: 100%;
+  width: 33%;
+  border-style: solid;
+  border-color: white;
+  text-align: center; */
+}
+
 /* .page {
   --gray-rgb: 0, 0, 0;
   --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
