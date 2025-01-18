@@ -5,7 +5,7 @@ import { ReactNode, useContext, useState } from 'react'
 import { Component } from 'react'
 import { TaskContext, TaskContextType } from './addtask'
 import { DataContext, DataContextType, dataType } from './data'
-import { getTitle } from '../page'
+import { getTitle } from '../utils/get-title'
 
 const Row = ({ name, description, date, keyProp }: { name: string, description: string, date: string, keyProp: string }) => {
 
@@ -64,11 +64,6 @@ const MainRowFeatures = ({ name, description, date, keyProp }: { name: string, d
         );
     }
 
-    if (date) {
-        console.log(getDateDiff(date));
-        console.log(checkDatePassed(date));
-    }
-
     return (
         <>
             <textarea className={styles.inner} defaultValue={name} readOnly={true} disabled={true}>
@@ -95,8 +90,6 @@ const getDateDiff = (stringDate: string) => {
     const goalDate = new Date(stringDate);
     const diffTime = Math.abs(goalDate.getTime() - currentDate.getTime());
     const diffDays = Math.round(diffTime / (1000 * 3600 * 24));
-    console.log(diffTime + " milliseconds");
-    console.log(diffDays+1 + " days");
 
     return diffDays+1
 }
@@ -105,7 +98,6 @@ const checkDatePassed = (stringDate: string): boolean => {
     const currentDate = new Date();
     const goalDate = new Date(stringDate);
     const diffTime = goalDate.getTime() - currentDate.getTime() + 8.64e+7;
-    console.log('diff is:', diffTime)
     return diffTime < 0;
 }
 

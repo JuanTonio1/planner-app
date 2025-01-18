@@ -8,6 +8,8 @@ import { TaskContext } from "./components/addtask";
 import Row from './components/row'
 import { DataContext, DataContextType, DataProvider, dataType } from "./components/data";
 import { title } from "process";
+import './style/globals.css'
+import { getTitle } from "./utils/get-title";
 
 
 const Home = () => {
@@ -58,15 +60,9 @@ const TaskAmount = () => {
   )
 }
 
-export const getTitle = (): string => {
-  return document.querySelector("#title") instanceof HTMLInputElement && document.querySelector<HTMLInputElement>("#title")!.value || '';
-}
-
 const Rows = () => {
   const { tasks, setTasks } = useContext(TaskContext) as TaskContextType;
   const { data, setData } = useContext(DataContext) as DataContextType;
-
-  console.log('render');
 
   const rowList = tasks.map((task, i) => {
     return <Row name={task.name} description={task.description} date={task.date} key={'task' + String(i)} keyProp={'task' + String(i)}></Row>
@@ -78,8 +74,6 @@ const Rows = () => {
     if (typeof window !== 'undefined') {
       const savedData = localStorage.getItem('data'); // Replace 'myDataKey' with your key
       if (savedData) {
-        console.log('found!')
-        console.log(savedData);
         var parsedData = JSON.parse(savedData) as dataType
         setData(parsedData); // Parse JSON data and set it to state
         setTasks(parsedData.rows)

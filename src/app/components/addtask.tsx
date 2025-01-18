@@ -45,9 +45,6 @@ const AddTask = () => {
             let description: string = description_input !== null && description_input.value || '';
             let date: string = date_input !== null && date_input.value || '';
 
-            console.log('name is:', name);
-            console.log('description is:', description);
-            console.log('date is:', date)
             var newTasks = [...tasks, { name, description, date }];
             setTasks(newTasks);
             setShowPopup(false);
@@ -61,7 +58,6 @@ const AddTask = () => {
         }
         setShowPopup(true);
     }
-    console.log(tasks.length)
 
 
     return (
