@@ -77,7 +77,7 @@ const MainRowFeatures = ({ name, description, date, keyProp }: { name: string, d
             </textarea>
             <textarea className={styles.inner} defaultValue={date} readOnly={true} disabled={true}>
             </textarea>
-            <div className={`${styles.priority}`}>
+            {/* <div className={`${styles.priority}`}>
                 <button className={styles.red}></button>
                 <button className={styles.yellow}></button>
                 <button className={styles.blue}></button>
@@ -85,7 +85,7 @@ const MainRowFeatures = ({ name, description, date, keyProp }: { name: string, d
             </div>
             <button className={styles.inner} onClick={deleteRow}>
                 <Image src='/garbage-can.png' alt='' className={styles.garbage} width={0} height={0}></Image>
-            </button>
+            </button> */}
         </>
     )
 }
