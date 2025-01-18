@@ -1,0 +1,12 @@
+.container {
+    width: 10%;
+    height: 10%;
+    position: absolute;
+    left: 65.4%;
+    bottom: 85%;
+}
+
+.container button {
+    width: 50%;
+    height: 100%;
+}

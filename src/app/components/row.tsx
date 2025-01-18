@@ -4,6 +4,8 @@ import Image from 'next/image'
 import { ReactNode, useContext, useState } from 'react'
 import { Component } from 'react'
 import { TaskContext, TaskContextType } from './addtask'
+import { DataContext, DataContextType, dataType } from './data'
+import { getTitle } from '../page'
 
 const Row = ({ name, description, date, keyProp }: { name: string, description: string, date: string, keyProp: string }) => {
 
@@ -19,12 +21,17 @@ const Row = ({ name, description, date, keyProp }: { name: string, description: 
 
 const Checkmark = ({ keyProp }: { keyProp: string }) => {
     const { tasks, setTasks } = useContext(TaskContext) as TaskContextType;
+    const { data, setData } = useContext(DataContext) as DataContextType;
     const complete = () => {
 
         tasks.map((task, i) => {
             if (('task' + String(i)) == keyProp) {
                 const newTasks = tasks.filter((_, index) => index !== i);
                 setTasks(newTasks);
+                const newData = {rows: newTasks, title:getTitle()} as dataType
+                setData(newData);
+                var stringData = JSON.stringify(newData);
+                localStorage.setItem('data', stringData);
                 return (
                     <></>
                 )
